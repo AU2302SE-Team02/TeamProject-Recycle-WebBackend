@@ -9,18 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ajou.sce3372.recycle.entity.ItemInfo;
-import com.ajou.sce3372.recycle.service.RecycleService;
+import com.ajou.sce3372.recycle.service.ItemInfoSearch;
 
 @RestController
 @RequestMapping("/api")
-public class WebRequestController {
+public class RecycleInfoRequest {
 
     @Autowired
-    private RecycleService recycleService;
+    private ItemInfoSearch itemInfoSearch;
 
     @GetMapping(value = "/items/{barcode}")
-    public ItemInfo itemSearchByPath(@PathVariable String barcode) throws ExecutionException, InterruptedException{
-        return recycleService.searchItem(barcode);
+    public ItemInfo searchRecycleInfo(@PathVariable String barcode) throws ExecutionException, InterruptedException{
+        return itemInfoSearch.searchItemInfo(barcode);
     }
-    
 }

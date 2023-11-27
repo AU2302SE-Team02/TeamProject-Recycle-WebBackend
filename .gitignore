@@ -59,3 +59,4 @@ replay_pid*
 
 # Spring boot - Firebase serviceAccountKey.json
 serviceAccountKey.json
+naverMapClientKey.json

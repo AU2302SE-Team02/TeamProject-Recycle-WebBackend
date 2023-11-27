@@ -1,8 +1,8 @@
-package com.ajou.sce3372.recycle.service;
+package com.ajou.sce3372.recycle.repository;
 
 import java.util.concurrent.ExecutionException;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.ajou.sce3372.recycle.entity.ItemInfo;
 import com.google.api.core.ApiFuture;
@@ -11,12 +11,13 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.cloud.FirestoreClient;
 
-@Service
-public class RecycleService {
-
+// Repository
+@Repository
+public class ItemRepo {
+    
     private static final String COLLECTION_ITEMS = "items";
 
-    public ItemInfo searchItem(String barcode) throws ExecutionException, InterruptedException {
+    public ItemInfo getItemInfo(String barcode) throws ExecutionException, InterruptedException {
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
 
