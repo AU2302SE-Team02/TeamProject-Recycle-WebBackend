@@ -44,6 +44,7 @@ public class KoreanNetFetch {
             System.out.println("Product Img src: " + itemImgSrc);
             //itemImgSrc에 바코드 크롤링했을 때 아이템 이미지 주소가 저장됨
 
+            knItemInfoDTO.setKnItemBarcode(barcode);
             knItemInfoDTO.setKnItemName(itemName);
             knItemInfoDTO.setKnItemImageSrc(itemImgSrc);
         } catch (IOException e) {

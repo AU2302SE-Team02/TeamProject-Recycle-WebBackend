@@ -21,18 +21,19 @@ public class ItemRepo {
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
 
-        DocumentReference documentReference = dbFirestore.collection(COLLECTION_ITEMS).document(barcode);
+        DocumentReference documentReferenceItem = dbFirestore.collection(COLLECTION_ITEMS).document(barcode);
 
-        ApiFuture<DocumentSnapshot> future = documentReference.get();
+        ApiFuture<DocumentSnapshot> futureItem = documentReferenceItem.get();
 
-        DocumentSnapshot document = future.get();
+        DocumentSnapshot documentItem = futureItem.get();
 
-        ItemInfo itemInfo = null;
+        ItemInfo itemInfo = new ItemInfo();
 
-        if (document.exists()) {
-            itemInfo = document.toObject(ItemInfo.class);
+        if (documentItem.exists()) {
+            itemInfo = documentItem.toObject(ItemInfo.class);
             return itemInfo;
         } else {
+            System.out.println("Error: Following document doesn't exist - " + barcode);
             return null;
         }
     }
