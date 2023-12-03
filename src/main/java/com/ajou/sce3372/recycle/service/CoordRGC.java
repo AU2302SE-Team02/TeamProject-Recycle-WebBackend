@@ -12,7 +12,7 @@ import com.ajou.sce3372.recycle.dto.AddressInfoDTO;
 
 @Service
 public class CoordRGC {
-    public String requestRGCtoNmapAPI(String latitude, String longtitude) {
+    public AddressInfoDTO requestRGCtoNmapAPI(String latitude, String longitude) {
 
         String clientID = null;
         String clientSecret = null;
@@ -28,7 +28,7 @@ public class CoordRGC {
         WebClient webClient = WebClient.builder().build();
         String endpointUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc";
         String options = "&orders=admcode,roadaddr&output=json";
-        String requestUrl = endpointUrl + "?coords=" + longtitude + "," + latitude + options;
+        String requestUrl = endpointUrl + "?coords=" + longitude + "," + latitude + options;
 
         String response = webClient.get()
             .uri(requestUrl)
@@ -38,7 +38,9 @@ public class CoordRGC {
             .bodyToMono(String.class)
             .block();
 
-        return response;
+        AddressInfoDTO addressInfoDTO = new AddressInfoDTO(response, latitude, longitude);
+
+        return addressInfoDTO;
     }
 
     private JSONObject readJsonKey() throws Exception {

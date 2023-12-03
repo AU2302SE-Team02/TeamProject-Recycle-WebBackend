@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ajou.sce3372.recycle.dto.AddressInfoDTO;
 import com.ajou.sce3372.recycle.service.CoordRGC;
 
 @RestController
@@ -16,7 +17,7 @@ public class CoordRGCRequest {
     private CoordRGC coordRGC;
 
     @GetMapping(value = "/rgc")
-    public String getAddress(@RequestParam String latitude, @RequestParam String longtitude) {
+    public AddressInfoDTO getAddress(@RequestParam String latitude, @RequestParam String longtitude) {
         return coordRGC.requestRGCtoNmapAPI(latitude, longtitude);
     }
 }
