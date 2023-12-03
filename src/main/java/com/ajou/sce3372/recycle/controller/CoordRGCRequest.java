@@ -17,7 +17,7 @@ public class CoordRGCRequest {
     private CoordRGC coordRGC;
 
     @GetMapping(value = "/rgc")
-    public AddressInfoDTO getAddress(@RequestParam String latitude, @RequestParam String longtitude) {
-        return coordRGC.requestRGCtoNmapAPI(latitude, longtitude);
+    public AddressInfoDTO getAddress(@RequestParam String latitude, @RequestParam String longitude) {
+        return coordRGC.requestRGCtoNmapAPI(latitude, longitude);
     }
 }
