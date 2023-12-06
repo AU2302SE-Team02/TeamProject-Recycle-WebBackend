@@ -24,25 +24,33 @@ public class AddressInfoDTO {
             JSONObject object = (JSONObject) parser.parse(json);
             JSONArray results = (JSONArray) object.get("results");
             JSONObject admcode = (JSONObject) results.get(0);
-            JSONObject roadaddr = (JSONObject) results.get(1);
             JSONObject region_adm = (JSONObject) admcode.get("region");
-            JSONObject land = (JSONObject) roadaddr.get("land");
+            JSONObject roadaddr = null;
+            JSONObject land = null;
+            JSONObject addition0 = null;
+            if (results.size() != 1) {
+                roadaddr = (JSONObject) results.get(1);
+                land = (JSONObject) roadaddr.get("land");
+                addition0 = (JSONObject) land.get("addition0");
+            }
 
             JSONObject area0_adm = (JSONObject) region_adm.get("area0");
             JSONObject area1_adm = (JSONObject) region_adm.get("area1");
             JSONObject area2_adm = (JSONObject) region_adm.get("area2");
             JSONObject area3_adm = (JSONObject) region_adm.get("area3");
-            JSONObject addition0 = (JSONObject) land.get("addition0");
                     
             this.address_level_0 = (String) area0_adm.get("name");
             this.address_level_1 = (String) area1_adm.get("name");
             this.address_level_2 = (String) area2_adm.get("name");
             this.address_level_3 = (String) area3_adm.get("name");
-            if (((String) addition0.get("value")).equals("")) {
-                this.land_building = null;
-            } else {
-                this.land_building = (String) addition0.get("value");
+            if (results.size() != 1) {
+                if (((String) addition0.get("value")).equals("")) {
+                    this.land_building = null;
+                } else {
+                    this.land_building = (String) addition0.get("value");
+                }
             }
+            
         } catch (ParseException e) { }
     }
 
