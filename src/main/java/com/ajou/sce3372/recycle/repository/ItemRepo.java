@@ -30,6 +30,7 @@ public class ItemRepo {
         ItemInfo itemInfo = new ItemInfo();
 
         if (documentItem.exists()) {
+            System.out.println("Following document exists - " + barcode);
             itemInfo = documentItem.toObject(ItemInfo.class);
             return itemInfo;
         } else {

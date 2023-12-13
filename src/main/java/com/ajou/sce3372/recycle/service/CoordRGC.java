@@ -30,6 +30,7 @@ public class CoordRGC {
         String options = "&orders=admcode,roadaddr&output=json";
         String requestUrl = endpointUrl + "?coords=" + longitude + "," + latitude + options;
 
+        System.out.println("Starting Reverse-GC: " + latitude + " / " + longitude);
         String response = webClient.get()
             .uri(requestUrl)
             .header("X-NCP-APIGW-API-KEY-ID", clientID)
@@ -38,7 +39,9 @@ public class CoordRGC {
             .bodyToMono(String.class)
             .block();
 
+        System.out.println("Communication Successful: " + latitude + " / " + longitude);
         AddressInfoDTO addressInfoDTO = new AddressInfoDTO(response, latitude, longitude);
+        System.out.println("Address Mapping Completed");
 
         return addressInfoDTO;
     }

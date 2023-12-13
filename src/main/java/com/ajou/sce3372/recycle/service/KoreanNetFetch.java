@@ -32,7 +32,7 @@ public class KoreanNetFetch {
             for (int j = 2; j < words.length; j++) {
                 itemName += (words[j] + " ");
             }
-            System.out.println("Product Title: " + itemName);
+            // System.out.println("Product Title: " + itemName);
             //itemName에 바코드 크롤링했을 때 아이템 이름이 검색됨.
 
             // 아이템 사진 링크 받아오기
@@ -41,8 +41,8 @@ public class KoreanNetFetch {
 
             // 선택한 요소 출력
             itemImgSrc = itemImgElements.get(0).attr("src");
-            System.out.println("Product Img src: " + itemImgSrc);
-            //itemImgSrc에 바코드 크롤링했을 때 아이템 이미지 주소가 저장됨
+            // System.out.println("Product Img src: " + itemImgSrc);
+            // itemImgSrc에 바코드 크롤링했을 때 아이템 이미지 주소가 저장됨
 
             knItemInfoDTO.setKnItemBarcode(barcode);
             knItemInfoDTO.setKnItemName(itemName);

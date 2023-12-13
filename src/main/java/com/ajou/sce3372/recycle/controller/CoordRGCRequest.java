@@ -18,6 +18,7 @@ public class CoordRGCRequest {
 
     @GetMapping(value = "/rgc")
     public AddressInfoDTO getAddress(@RequestParam String latitude, @RequestParam String longitude) {
+        System.out.println("Request incoming: Reverse-GC " + latitude + " / " + longitude);
         return coordRGC.requestRGCtoNmapAPI(latitude, longitude);
     }
 }

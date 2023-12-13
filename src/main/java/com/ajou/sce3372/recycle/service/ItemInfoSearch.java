@@ -18,8 +18,11 @@ public class ItemInfoSearch {
             ItemInfo itemInfo = itemRepo.getItemInfo(barcode);
             ItemInfoDTO itemInfoDTO = new ItemInfoDTO(itemInfo);
             return itemInfoDTO;
+        } catch (NullPointerException npe) {
+            System.out.println("ItemInfoSearch : Document not exists - " + barcode);
+            return null;
         } catch (Exception e) {
-            System.out.println("Error in Service : GuideInfoSearch");
+            System.out.println("Error in Service : ItemInfoSearch");
             e.printStackTrace();
             return null;
         }

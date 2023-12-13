@@ -19,8 +19,11 @@ public class GuideInfoSearch {
             GuideInfo guideInfo = guideRepo.getGuideInfo(location);
             GuideInfoDTO guideInfoDTO = new GuideInfoDTO(guideInfo);
             return guideInfoDTO;
+        } catch (NullPointerException npe) {
+            System.out.println("GuideInfoSearch : Document not exists - " + location);
+            return null;
         } catch (Exception e) {
-            System.out.println("Error in Service : GuideInfoSearch");
+            System.out.println("Exception in Service : GuideInfoSearch");
             e.printStackTrace();
             return null;
         }
